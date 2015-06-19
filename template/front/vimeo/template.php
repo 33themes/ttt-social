@@ -1,3 +1,5 @@
+<?php if ( ! defined( 'WPINC' ) ) { die; } ?>
+
 <?php 
  if ( $netsocial->videos ): ?>
 <aside id="ttt-social-vimeo" class="widget vimeo-widget">

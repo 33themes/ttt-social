@@ -1,3 +1,5 @@
+<?php if ( ! defined( 'WPINC' ) ) { die; } ?>
+
 <!--<aside id="ttt-social-twitter" class="widget twitter-widget">-->
 	<h4 class="widget-title">Twitter Feed</h4>
 	<ul class="no-bullet">

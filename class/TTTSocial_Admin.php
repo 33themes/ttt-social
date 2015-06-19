@@ -1,6 +1,7 @@
 <?php
 
 class TTTSocial_Admin extends TTTSocial_Common {
+	
 	public function init() {
 		parent::init();
 		
@@ -32,5 +33,3 @@ class TTTSocial_Admin extends TTTSocial_Common {
 	}
 
 }
-
-?>

@@ -221,5 +221,3 @@ public function pinterest() {
 	}
 	
 }
-
-?>

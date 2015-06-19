@@ -1,3 +1,5 @@
+<?php if ( ! defined( 'WPINC' ) ) { die; } ?>
+
 <?php if ( $netsocial->feed ): ?>
 <!--<aside id="ttt-social-vimeo" class="widget vimeo-widget">-->
 	<h4 class="widget-title">Pinterest</h4>

@@ -1,3 +1,5 @@
+<?php if ( ! defined( 'WPINC' ) ) { die; } ?>
+
 <?php echo "netsocial ".$netsocial->user;
 		echo "uri ".$api_endpoint; ?>
 <?php if ( $netsocial->videos ): ?>

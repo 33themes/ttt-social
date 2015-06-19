@@ -1,3 +1,5 @@
+<?php if ( ! defined( 'WPINC' ) ) { die; } ?>
+
 <?php if ( $netsocial->feed ): ?>
 
 <ul>

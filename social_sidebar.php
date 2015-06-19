@@ -1,4 +1,9 @@
 <?php // Register Sidebar
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+} // end if
+
 function custom_sidebar() {
 
 	$args = array(
