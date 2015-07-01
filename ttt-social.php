@@ -74,4 +74,4 @@ function tttsocial_uninstall() {
     //require_once TTTINC_SOCIAL . '/class-page-template.php';
 require_once( plugin_dir_path( __FILE__ ) . 'class-page-template.php' );
 add_action( 'plugins_loaded', array( 'Page_Template_Plugin', 'get_instance' ) );
-require_once TTTINC_SOCIAL . '/social_sidebar.php';
+//require_once TTTINC_SOCIAL . '/social_sidebar.php';
