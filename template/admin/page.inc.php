@@ -1,8 +1,9 @@
 <?php
 
+
+// Default credentials for Twitter
 if ( ! $this->get('twitter_customer_key') ) $this->set('twitter_customer_key','SxILR9KHzg8jCTJnIosHQ');
 if ( ! $this->get('twitter_customer_secret') ) $this->set('twitter_customer_secret','RB3u3gq7Q43GSVCxQ6klDPyba9iearl3DwCXkpozlM');
-
 
 if ( isset($_POST['twitter_application_keys']) && check_admin_referer('twitter_application_keys') ) {
 	$this->set('twitter_customer_key',$_POST['twitter_customer_key']);
@@ -21,6 +22,14 @@ if ( isset($_REQUEST['unlink'] ) && wp_verify_nonce( $_REQUEST['_nonce'], 'twitt
 	die();
 }
 
+// Default credentials for facebook
+if ( ! $this->get('facebook_app_id') ) $this->set('facebook_app_id','158115770920449');
+if ( ! $this->get('facebook_app_key') ) $this->set('facebook_app_key','4bf10c26ac3b369d6bbb4b536f628480');
+
+if ( isset($_POST['facebook_application_keys']) && check_admin_referer('facebook_application_keys') ) {
+	$this->set('facebook_app_id',$_POST['facebook_app_id']);
+	$this->set('facebook_app_key',$_POST['facebook_app_key']);
+}
 
 ?>
 
@@ -28,6 +37,7 @@ if ( isset($_REQUEST['unlink'] ) && wp_verify_nonce( $_REQUEST['_nonce'], 'twitt
 	<div id="icon-upload" class="icon32">
 		<br>
 	</div>
+
 	<h2><?php _e('TTT Social', parent::sname ) ; ?></h2>
 
 	<br/>
@@ -50,15 +60,39 @@ if ( isset($_REQUEST['unlink'] ) && wp_verify_nonce( $_REQUEST['_nonce'], 'twitt
 	<br>
 
 	<?php if ($this->get('twitter_credentials')): $connection = $this->twitter_connection('account/settings'); ?>
-	<fieldset>
-		<legend><?php _e('Is liked to twitter account', parent::sname ); ?>: <?php echo '@'.$connection->screen_name; ?></legend>
-		<a class="button" href="<?php echo get_admin_url(); ?>options-general.php?page=ttt-social-menu&unlink=true&_nonce=<?php echo wp_create_nonce('twitter_credentials'); ?>"><?php _e('Unlink this account'); ?></a>
-	</fieldset>
-	<?php else: ?>
-	<a class="button twitter_link" href="<?php echo $redirect_url; ?>"><?php _e('Add account', parent::sname ); ?></a>
-	<br>
+		<fieldset>
+			<legend><?php _e('Is liked to twitter account', parent::sname ); ?>: <?php echo '@'.$connection->screen_name; ?></legend>
+			<a class="button" href="<?php echo get_admin_url(); ?>options-general.php?page=ttt-social-menu&unlink=true&_nonce=<?php echo wp_create_nonce('twitter_credentials'); ?>"><?php _e('Unlink this account'); ?></a>
+		</fieldset>
+		<?php else: ?>
+		<a class="button twitter_link" href="<?php echo $redirect_url; ?>"><?php _e('Add account', parent::sname ); ?></a>
+		<br>
 	<?php endif; ?>
 
+	<br>
+	<hr>
+
+	<h3>Facebook</h3>
+
+	<fieldset>
+		<legend><?php _e('Facebook application keys', parent::sname ); ?></legend>
+		<form action="" method="post">
+			<input type="hidden" name="facebook_application_keys" value="1">
+			<?php wp_nonce_field('facebook_application_keys'); ?>
+
+			<label>APP ID</label> <input class="input" type="input" name="facebook_app_id" value="<?php echo $this->get('facebook_app_id'); ?>" placeholder="<?php _e('Application uniq ID',parent::sname);?>">
+			<br>
+
+			<label>APP Secret</label> <input class="input" type="input" name="facebook_app_key" value="<?php echo $this->get('facebook_app_key'); ?>" placeholder="<?php _e('Application key',parent::sname);?>">
+			<br>
+
+			<input type="submit" class="button" value="<?php _e('Save', parent::sname ); ?>">
+		</form>
+
+		<p>* <a href="https://developers.facebook.com/apps/async/create/platform-setup/dialog/" target="_blank">Create new APP for facebook</a></p>
+
+	</fieldset>
+	
 	<br>
 	<hr>
 
