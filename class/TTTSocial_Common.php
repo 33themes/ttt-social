@@ -6,6 +6,8 @@ if (!class_exists('OAuthConsumer'))
 if (!class_exists('TwitterOAuth'))
     require_once TTTINC_SOCIAL . '/inc/twitteroauth.php';
 
+require_once TTTINC_SOCIAL . '/inc/instagram.php';
+
 use Facebook\FacebookSession;
 
 class TTTSocial_Common {
@@ -132,6 +134,57 @@ class TTTSocial_Common {
 
         return $netsocial;
     }
+
+    public function instagram_auth($value='') {
+        
+        if ( $_instagram_credentials = $this->get('instagram_credentials') ) return true;
+
+        //var_dump($_REQUEST); die();
+
+        $instagram = new Instagram(array(
+                        'apiKey'      => $this->get('instagram_customer_key'),
+                        'apiSecret'   => $this->get('instagram_customer_secret'),
+                        'apiCallback' => get_admin_url().'options-general.php?page=ttt-social-menu',
+                    ));
+
+        if ( !isset($_REQUEST['code']) ) {
+            return $instagram->getLoginUrl();
+
+        }
+        else {
+            $token = $instagram->getOAuthToken($_REQUEST['code'], true);
+            $this->set('instagram_credentials', $token);
+        }
+
+        return;
+    }
+
+    public function instagram_load($test=false, $params=false){
+
+
+        $netsocial = (object) $this->get('instagram');
+        $netsocial->limit = 2;
+            
+        if ( isset($params['user']) ) $netsocial->user = $params['user'];
+        if ( isset($params['limit'])) $netsocial->limit = $params['limit'];
+
+
+        $instagram = new Instagram(array(
+                        'apiKey'      => $this->get('instagram_customer_key'),
+                        'apiSecret'   => $this->get('instagram_customer_secret'),
+                        'apiCallback' => get_admin_url().'options-general.php?page=ttt-social-menu',
+                    ));
+        $instagram->setAccessToken($this->get('instagram_credentials'));
+
+        $full = $instagram->getUserMedia($netsocial->user, $netsocial->limit);
+    
+        $netsocial->userdata = $instagram->getUser($netsocial->user)->data;
+        $netsocial->userdata->link = sprintf('https://instagram.com/%s/', $netsocial->userdata->username);
+
+        $netsocial->feed = $full->data;
+
+        return $netsocial;
+    }
     
 
     public function vimeo_load( $params = false ) {
@@ -219,9 +272,6 @@ class TTTSocial_Common {
         return $netsocial;
     }
 
-    public function instagram_load($params=false){
-
-    }
 
 
     public function _s( $s = false ) {

@@ -54,6 +54,7 @@ function tttsocial_widgets_init() {
     require_once TTTINC_SOCIAL . '/widgets/facebook.php';
     require_once TTTINC_SOCIAL . '/widgets/twitter.php';
     require_once TTTINC_SOCIAL . '/widgets/vimeo.php';
+    require_once TTTINC_SOCIAL . '/widgets/instagram.php';
     require_once TTTINC_SOCIAL . '/widgets/pinterest.php';
 }
 add_action('widgets_init', 'tttsocial_widgets_init');

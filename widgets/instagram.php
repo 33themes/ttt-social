@@ -31,14 +31,10 @@ class TTTSocial_instagram_widget extends WP_Widget {
 
         unset( $_from );
         if ( mb_strlen($instance['user']) > 3 ) {
-            $_s = preg_split('/\s+/',$instance['user']);
-            foreach ($_s as $_name) {
-                if ( $_from ) $_from .= ' OR ';
-                $_from .= 'from:'.trim($_name);
-            }
+            $netsocial = $TTTSocial->instagram_load( false, (array) $instance );
         }
         else {
-            $netsocial = $TTTSocial->instagram_load( false, (array) $instance );
+            return false;
         }
         
         $theme = get_template_directory().'/ttt-social/'.$template.'/template.php';

@@ -1,22 +1,27 @@
 <?php if ( ! defined( 'WPINC' ) ) { die; } ?>
 
-<?php echo "netsocial ".$netsocial->user;
-		echo "uri ".$api_endpoint; ?>
-<?php if ( $netsocial->videos ): ?>
-<section id="ttt-social-vimeo" class="widget vimeo-widget">
-	<h4 class="widget-title">Vimeo videos</h4>
+
+<?php if ( $netsocial->feed ): ?>
+<section id="ttt-social-instagram" class="widget instagram-widget">
+	<h4 class="widget-title">Instagram</h4>
+	<a href="<?php echo $netsocial->userdata->link; ?>">
+		<?php echo $netsocial->userdata->full_name; ?>
+	</a>
+	<em><?php echo $netsocial->userdata->bio; ?></em>
+
 	<ul class="no-bullet">
 		
-		<?php echo "netsocial ".$netsocial->user;
-		echo "uri ".$api_endpoint; 
-		foreach( $netsocial->videos as $video): ?>
+		<?php foreach( $netsocial->feed as $item): ?>
 		
 			<li class="feed-entry">
-				<img id="portrait" src="<?php echo $userlist->user->portrait_small ?>" />
-				<h2><?php echo $userlist->user->display_name ?>'s Videos</h2>
+
+				<p>Likes: <?php echo number_format($item->likes->count,0); ?></p>
+				<p>Comments: <?php echo number_format($item->comments->count,0); ?></p>
 				
-				<p id="bio"><?php echo $userlist->user->bio ?></p>
-				<a href="<?php echo $video->url ?>"><img src="<?php echo $video->thumbnail_medium ?>" /></a>
+				<a href="<?php echo $item->link; ?>">
+					<img src="<?php echo $item->images->standard_resolution->url; ?>" />
+				</a>
+
 			</li>
 			
 		<?php endforeach ?>
