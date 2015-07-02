@@ -159,13 +159,34 @@ class TTTSocial_Common {
         return;
     }
 
+    public function instagram_user_search($name) {
+
+        $instagram = new Instagram(array(
+                        'apiKey'      => $this->get('instagram_customer_key'),
+                        'apiSecret'   => $this->get('instagram_customer_secret'),
+                        'apiCallback' => get_admin_url().'options-general.php?page=ttt-social-menu',
+                    ));
+        $instagram->setAccessToken($this->get('instagram_credentials'));
+
+        $full = $instagram->searchUser($name, 10);
+
+        foreach($full->data as $user) {
+            if ($user->username == trim($name)) {
+                return $user->id;
+            }
+        }
+
+        return false;
+    }
+
+
     public function instagram_load($test=false, $params=false){
 
 
         $netsocial = (object) $this->get('instagram');
         $netsocial->limit = 2;
             
-        if ( isset($params['user']) ) $netsocial->user = $params['user'];
+        if ( isset($params['user_id']) ) $netsocial->user_id = $params['user_id'];
         if ( isset($params['limit'])) $netsocial->limit = $params['limit'];
 
 
@@ -176,9 +197,9 @@ class TTTSocial_Common {
                     ));
         $instagram->setAccessToken($this->get('instagram_credentials'));
 
-        $full = $instagram->getUserMedia($netsocial->user, $netsocial->limit);
+        $full = $instagram->getUserMedia($netsocial->user_id, $netsocial->limit);
     
-        $netsocial->userdata = $instagram->getUser($netsocial->user)->data;
+        $netsocial->userdata = $instagram->getUser($netsocial->user_id)->data;
         $netsocial->userdata->link = sprintf('https://instagram.com/%s/', $netsocial->userdata->username);
 
         $netsocial->feed = $full->data;
