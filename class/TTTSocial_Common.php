@@ -19,8 +19,8 @@ class TTTSocial_Common {
         global $wpdb;
     }
 
-    public function ckey( $fn, $a = false, $b = false, $c = false ) {
-        return md5(NONCE_KEY.$fn.serialize($a).serialize($b).serialize($b));
+    public function ckey() {
+        return md5(NONCE_KEY.serialize(func_get_args()));
     }
 
     public function twitter_connection( $func = 'statuses/user_timeline', $params = false ) {
@@ -29,7 +29,12 @@ class TTTSocial_Common {
         $ckey = $this->ckey( __function__, $func, $_twitter_credentials, $params );
         if ( $timeline = wp_cache_get( $ckey, self::group ) ) return $timeline;
 
-        $connection = new TwitterOAuth( $this->get('twitter_customer_key'), $this->get('twitter_customer_secret'), $_twitter_credentials['oauth_token'], $_twitter_credentials['oauth_token_secret']);
+        $connection = new TwitterOAuth(
+            $this->get('twitter_customer_key'),
+            $this->get('twitter_customer_secret'),
+            $_twitter_credentials['oauth_token'],
+            $_twitter_credentials['oauth_token_secret']
+        );
 
         $timeline = $connection->get( $func, $params );
 

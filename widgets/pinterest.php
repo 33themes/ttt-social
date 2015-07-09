@@ -7,7 +7,7 @@ class TTTSocial_pinterest_widget extends WP_Widget {
     }
 
     public function form( $instance ) {
-    
+
         $userpint = esc_attr($instance['userpint']);
         $board = esc_attr($instance['board']);
         $limit = esc_attr($instance['limit']);
@@ -38,20 +38,23 @@ class TTTSocial_pinterest_widget extends WP_Widget {
         $TTTSocial = new TTTSocial_Front();
 
         $netsocial = $TTTSocial->pinterest_load( (array) $instance );
-        
-        $theme = get_template_directory().'/ttt-social/'.$template.'/template.php';
+
+        $parent = get_template_directory().'/ttt-social/'.$template.'/template.php';
+        $theme = get_stylesheet_directory().'/ttt-social/'.$template.'/template.php';
         $local = TTTINC_SOCIAL . '/template/front/'.$template.'/template.php';
 
         echo $args['before_widget'];
 
         if ( file_exists( $theme ) )
             require( $theme );
+        elseif ( file_exists( $parent ) )
+            require( $local );
         elseif ( file_exists( $local ) )
             require( $local );
 
-        echo $args['after_widget'];     
+        echo $args['after_widget'];
     }
-    
+
 }
 
 register_widget( 'TTTSocial_pinterest_widget' );

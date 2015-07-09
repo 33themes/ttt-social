@@ -1,14 +1,14 @@
 <?php
 
 class TTTSocial_facebook_widget extends WP_Widget {
-    
+
     public function __construct() {
         // widget actual processes
         parent::WP_Widget(false,'TTT Social Facebook Widget','description=Facebook feed reader');
     }
 
     public function form( $instance ) {
-    
+
         $name = esc_attr($instance['name']);
         $id = esc_attr($instance['id']);
         $limit = esc_attr($instance['limit']);
@@ -38,14 +38,17 @@ class TTTSocial_facebook_widget extends WP_Widget {
         $TTTSocial = new TTTSocial_Front();
 
         $netsocial = $TTTSocial->facebook_load( (array) $instance );
-        
-        $theme = get_template_directory().'/ttt-social/'.$template.'/template.php';
+
+        $parent = get_template_directory().'/ttt-social/'.$template.'/template.php';
+        $theme = get_stylesheet_directory().'/ttt-social/'.$template.'/template.php';
         $local = TTTINC_SOCIAL . '/template/front/'.$template.'/template.php';
 
         echo $args['before_widget'];
 
         if ( file_exists( $theme ) )
             require( $theme );
+        elseif ( file_exists( $parent ) )
+            require( $local );
         elseif ( file_exists( $local ) )
             require( $local );
 

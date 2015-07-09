@@ -1,7 +1,7 @@
 <?php
 
 class TTTSocial_instagram_widget extends WP_Widget {
-        
+
     public function __construct() {
         // widget actual processes
         parent::WP_Widget(false,'TTT Social Instagram Widget','description=Instagram feed reader');
@@ -11,7 +11,7 @@ class TTTSocial_instagram_widget extends WP_Widget {
         $user_name = esc_attr($instance['user_name']);
         $user_id = esc_attr($instance['user_id']);
         $limit = esc_attr($instance['limit']);
-        
+
         ?>
 
         <p>
@@ -44,8 +44,8 @@ class TTTSocial_instagram_widget extends WP_Widget {
                     type="text" value="<?php echo $limit; ?>" />
             </label>
         </p>
-        
-        <?php 
+
+        <?php
     }
 
     public function update( $new_instance, $old_instance ) {
@@ -72,17 +72,20 @@ class TTTSocial_instagram_widget extends WP_Widget {
         else {
             return false;
         }
-        
-        $theme = get_template_directory().'/ttt-social/'.$template.'/template.php';
+
+        $parent = get_template_directory().'/ttt-social/'.$template.'/template.php';
+        $theme = get_stylesheet_directory().'/ttt-social/'.$template.'/template.php';
         $local = TTTINC_SOCIAL . '/template/front/'.$template.'/template.php';
 
         echo $args['before_widget'];
 
         if ( file_exists( $theme ) )
             require( $theme );
+        elseif ( file_exists( $parent ) )
+            require( $local );
         elseif ( file_exists( $local ) )
             require( $local );
-        
+
         echo $args['after_widget'];
     }
 

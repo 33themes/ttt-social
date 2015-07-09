@@ -16,8 +16,8 @@ class TTTSocial_vimeo_widget extends WP_Widget {
                 <?php _e('User:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('user'); ?>" name="<?php echo $this->get_field_name('user'); ?>" type="text" value="<?php echo $vimeo_user_name; ?>" />
             </label>
         </p>
-        
-        <?php 
+
+        <?php
     }
 
     public function update( $new_instance, $old_instance ) {
@@ -38,21 +38,24 @@ class TTTSocial_vimeo_widget extends WP_Widget {
                 if ( $_from ) $_from .= ' OR ';
                 $_from .= 'from:'.trim($_name);
             }
-        }       
+        }
         else {
             $netsocial = $TTTSocial->vimeo_load( false, (array) $instance );
         }
-        
-        $theme = get_template_directory().'/ttt-social/'.$template.'/template.php';
+
+        $parent = get_template_directory().'/ttt-social/'.$template.'/template.php';
+        $theme = get_stylesheet_directory().'/ttt-social/'.$template.'/template.php';
         $local = TTTINC_SOCIAL . '/template/front/'.$template.'/template.php';
 
         echo $args['before_widget'];
 
         if ( file_exists( $theme ) )
             require( $theme );
+        elseif ( file_exists( $parent ) )
+            require( $local );
         elseif ( file_exists( $local ) )
             require( $local );
-        
+
         echo $args['after_widget'];
     }
 

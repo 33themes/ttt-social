@@ -9,7 +9,7 @@ class TTTSocial_vimeo_widget extends WP_Widget {
     public function form( $instance ) {
         $user = esc_attr($instance['user']);
         $limit = esc_attr($instance['limit']);
-        
+
         ?>
         <p>
             <label for="<?php echo $this->get_field_id('user'); ?>">
@@ -21,7 +21,7 @@ class TTTSocial_vimeo_widget extends WP_Widget {
                 <?php _e('Limit:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" />
             </label>
         </p>
-        <?php 
+        <?php
     }
 
     public function update( $new_instance, $old_instance ) {
@@ -37,20 +37,26 @@ class TTTSocial_vimeo_widget extends WP_Widget {
         $TTTSocial = new TTTSocial_Front();
 
         $netsocial = $TTTSocial->vimeo_load( (array) $instance );
-        
+
         $theme = get_template_directory().'/ttt-social/'.$template.'/template.php';
+        $local = TTTINC_SOCIAL . '/template/front/'.$template.'/template.php';
+
+        $parent = get_template_directory().'/ttt-social/'.$template.'/template.php';
+        $theme = get_stylesheet_directory().'/ttt-social/'.$template.'/template.php';
         $local = TTTINC_SOCIAL . '/template/front/'.$template.'/template.php';
 
         echo $args['before_widget'];
 
         if ( file_exists( $theme ) )
             require( $theme );
+        elseif ( file_exists( $parent ) )
+            require( $local );
         elseif ( file_exists( $local ) )
             require( $local );
 
         echo $args['after_widget'];
-        
+
     }
-        
+
 }
 register_widget( 'TTTSocial_vimeo_widget' );

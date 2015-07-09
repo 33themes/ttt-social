@@ -3,7 +3,7 @@
 class TTTSocial_twitter_widget extends WP_Widget {
     public function __construct() {
         // widget actual processes
-        parent::WP_Widget(false,'TTT Social Twitter Widget','description=Twitter feed reader');
+        parent::__construct(false,'TTT Social Twitter Widget','description=Twitter feed reader');
     }
 
     public function form( $instance ) {
@@ -20,7 +20,7 @@ class TTTSocial_twitter_widget extends WP_Widget {
         <p>
             <label for="<?php echo $this->get_field_id('q'); ?>"><?php _e('Query:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('q'); ?>" name="<?php echo $this->get_field_name('q'); ?>" type="text" value="<?php echo $q; ?>" /></label>
         </p>
-        <?php 
+        <?php
     }
 
     public function update( $new_instance, $old_instance ) {
@@ -35,6 +35,7 @@ class TTTSocial_twitter_widget extends WP_Widget {
 
         $template = 'twitter';
         $TTTSocial = new TTTSocial_Front();
+
 
         unset( $_from );
         if ( mb_strlen($instance['screen_name']) > 3 ) {
@@ -59,17 +60,23 @@ class TTTSocial_twitter_widget extends WP_Widget {
         else {
             $netsocial = $TTTSocial->twitter_load( false, (array) $instance );
         }
-        
-        $theme = get_template_directory().'/ttt-social/'.$template.'/template.php';
+
+        $netsocial->screen_name = $instance['screen_name'];
+        $netsocial->q = $instance['q'];
+
+        $parent = get_template_directory().'/ttt-social/'.$template.'/template.php';
+        $theme = get_stylesheet_directory().'/ttt-social/'.$template.'/template.php';
         $local = TTTINC_SOCIAL . '/template/front/'.$template.'/template.php';
 
         echo $args['before_widget'];
 
         if ( file_exists( $theme ) )
             require( $theme );
+        elseif ( file_exists( $parent ) )
+            require( $local );
         elseif ( file_exists( $local ) )
             require( $local );
-        
+
         echo $args['after_widget'];
     }
 
