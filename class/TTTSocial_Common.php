@@ -62,13 +62,13 @@ class TTTSocial_Common {
 
             $this->set('twitter_credentials', $token_credentials);
             $this->del('twitter_first_auth');
-            
+
             echo 'Redirect....';
             echo '<script>window.location = "'.get_admin_url().'options-general.php?page=ttt-social-menu";</script>';
             exit();
 
         }
-        
+
     }
 
     public function twitter_load( $fn = 'statuses/user_timeline', $params = false ) {
@@ -107,7 +107,7 @@ class TTTSocial_Common {
 
         // If you already have a valid access token:
         $session = new FacebookSession('access-token');
-        
+
         // If you're making app-level requests:
         $session = FacebookSession::newAppSession();
 
@@ -136,7 +136,7 @@ class TTTSocial_Common {
     }
 
     public function instagram_auth($value='') {
-        
+
         if ( $_instagram_credentials = $this->get('instagram_credentials') ) return true;
 
         //var_dump($_REQUEST); die();
@@ -185,7 +185,7 @@ class TTTSocial_Common {
 
         $netsocial = (object) $this->get('instagram');
         $netsocial->limit = 2;
-            
+
         if ( isset($params['user_id']) ) $netsocial->user_id = $params['user_id'];
         if ( isset($params['limit'])) $netsocial->limit = $params['limit'];
 
@@ -198,7 +198,7 @@ class TTTSocial_Common {
         $instagram->setAccessToken($this->get('instagram_credentials'));
 
         $full = $instagram->getUserMedia($netsocial->user_id, $netsocial->limit);
-    
+
         $netsocial->userdata = $instagram->getUser($netsocial->user_id)->data;
         $netsocial->userdata->link = sprintf('https://instagram.com/%s/', $netsocial->userdata->username);
 
@@ -206,7 +206,7 @@ class TTTSocial_Common {
 
         return $netsocial;
     }
-    
+
 
     public function vimeo_load( $params = false ) {
         /*function curl_get($url) {
@@ -217,28 +217,28 @@ class TTTSocial_Common {
             $return = curl_exec($curl);
             curl_close($curl);
             return $return;
-        }*/         
+        }*/
         $netsocial = (object) $this->get('vimeo');
         $limite=1;
-            
+
         if ( isset($params['user']) ) $netsocial->user = $params['user'];
         if ( isset($params['limit'])) {
             $netsocial->limit = $params['limit'];
             $limite = (int)$params['limit'];
-            
+
         }
         $vimeo_user_name = $netsocial->user; //($_GET['user']) ? $_GET['user'] : 'brad';
         //$vimeo_user_name="brad";
         // API endpoint
         $api_endpoint = 'http://vimeo.com/api/v2/' . $vimeo_user_name;
         // Load the user info and clips
-        $curl=curl_init($api_endpoint . '/info.xml');   
+        $curl=curl_init($api_endpoint . '/info.xml');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_TIMEOUT, 30);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
         $userlist = simplexml_load_string(curl_exec($curl));
         curl_close($curl);
-        $curl=curl_init($api_endpoint . '/videos.xml'); 
+        $curl=curl_init($api_endpoint . '/videos.xml');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_TIMEOUT, 30);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
@@ -249,7 +249,7 @@ class TTTSocial_Common {
         /*$limit = $videos->get_item_quantity( $netsocial->limit ); // specify number of items
         $netsocial->videos = $videos->get_items(0, $limit);*/
         //$i=1;
-        
+
         /*for( $i=0; $i<$limite; $i++)
         {
             $userlistlimit[]=$userlist[$i];
@@ -257,37 +257,41 @@ class TTTSocial_Common {
         }*/
         $netsocial->userlist=$userlist;
         $netsocial->videos=$videos;
-        
+
         return $netsocial;
-    
+
     }
-    
+
     public function pinterest() {
         return (object) $this->get('pinterest');
     }
 
     public function pinterest_load( $params = false ){
-        
+
         $netsocial = $this->pinterest();
 
         if ( isset($params['userpint']) ) $netsocial->userpint = $params['userpint'];
         if ( isset($params['limit']) ) $netsocial->limit = $params['limit'];
         if ( isset($params['board']) ) $netsocial->board = $params['board'];
 
-        
-        $feed = fetch_feed('https://pinterest.com/'.$netsocial->userpint.'/feed.rss');
-        
+        if (empty($netsocial->board)) {
+          $netsocial->board = 'feed';
+        }
+
+
+        $feed = fetch_feed('https://pinterest.com/'.$netsocial->userpint.'/'.trim($netsocial->board).'.rss');
+
         /*Visualización de los pins de un board –
-         http://pinterest.com/PON AQUÍ EL USUARIO/PON AQUÍ EL NOMBRE DEL BOARD/rss 
+         http://pinterest.com/PON AQUÍ EL USUARIO/PON AQUÍ EL NOMBRE DEL BOARD/rss
          ejemplo Si el board tiene varias palabras, cambiar los espacios por el símbolo “-“*/
 
-          
+
         if ($feed->errors > 0 ) return false;
 
         $limit = $feed->get_item_quantity( $netsocial->limit ); // specify number of items
         $netsocial->feed = $feed->get_items(0, $limit);
-        
-        
+
+
         unset( $feed );
 
         return $netsocial;
@@ -299,20 +303,20 @@ class TTTSocial_Common {
         if ( $s === false) return self::name;
         return self::sname.'_'.$s;
     }
-    
+
     public function del( $name ) {
         return delete_option( self::sname . '_' . $name );
     }
-    
+
     public function get( $name ) {
         return get_option( self::sname . '_' . $name );
     }
-    
+
     public function set( $name, $value ) {
         if (!get_option( self::sname . '_' . $name ))
             add_option( self::sname . '_' . $name, $value);
-        
+
         update_option( self::sname . '_' . $name , $value);
     }
-    
+
 }
