@@ -41,8 +41,8 @@ class TTTSocial_vimeo_widget extends WP_Widget {
         $theme = get_template_directory().'/ttt-social/'.$template.'/template.php';
         $local = TTTINC_SOCIAL . '/template/front/'.$template.'/template.php';
 
-        $parent = get_template_directory().'/ttt-social/'.$template.'/template.php';
         $theme = get_stylesheet_directory().'/ttt-social/'.$template.'/template.php';
+        $parent = get_template_directory().'/ttt-social/'.$template.'/template.php';
         $local = TTTINC_SOCIAL . '/template/front/'.$template.'/template.php';
 
         echo $args['before_widget'];
@@ -50,10 +50,9 @@ class TTTSocial_vimeo_widget extends WP_Widget {
         if ( file_exists( $theme ) )
             require( $theme );
         elseif ( file_exists( $parent ) )
-            require( $local );
+            require( $parent );
         elseif ( file_exists( $local ) )
             require( $local );
-
         echo $args['after_widget'];
 
     }
