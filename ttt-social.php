@@ -78,3 +78,20 @@ require_once TTTINC_SOCIAL . '/inc/facebook-php-sdk/autoload.php';
 require_once( plugin_dir_path( __FILE__ ) . 'class-page-template.php' );
 add_action( 'plugins_loaded', array( 'Page_Template_Plugin', 'get_instance' ) );
 //require_once TTTINC_SOCIAL . '/social_sidebar.php';
+
+
+/* Add new social mendia profile links
+ * http://wp-snippets.com/addremove-contact-info-fields/
+ */
+function ttt_social_contactmethods( $contactmethods ) {
+    $contactmethods['twitter'] = 'Twitter'; // Add Twitter
+    $contactmethods['facebook'] = 'Facebook'; // Add Facebook
+    $contactmethods['vimeo'] = 'Vimeo'; // Add Vimeo
+    $contactmethods['instagram'] = 'Instagram'; // Add Instagram
+    $contactmethods['pinterest'] = 'Pinterest'; // Add Pinterest
+    $contactmethods['youtube'] = 'Youtube'; // Add Youtube
+    $contactmethods['github'] = 'Github'; // Add Github
+    $contactmethods['dribble'] = 'Dribble'; // Add Dribble
+    return $contactmethods;
+}
+add_filter('user_contactmethods','ttt_social_contactmethods',10,1); 
