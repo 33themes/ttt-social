@@ -5,29 +5,7 @@
  * Pointers are defined in an associative array and passed to the class upon instantiation.
  * First we hook into the 'admin_enqueue_scripts' hook with our function:
  *
- *   add_action('admin_enqueue_scripts', 'longsocial_HelpPointers');
- *   
- *   function longsocial_HelpPointers() {
- *      //First we define our pointers 
- *      $pointers = array(
- *                       array(
- *                           'id' => 'xyz123',   // unique id for this pointer
- *                           'screen' => 'page', // this is the page hook we want our pointer to show on
- *                           'target' => '#element-selector', // the css selector for the pointer to be tied to, best to use ID's
- *                           'title' => 'My ToolTip',
- *                           'content' => 'My tooltips Description',
- *                           'position' => array( 
- *                                              'edge' => 'top', //top, bottom, left, right
- *                                              'align' => 'middle' //top, bottom, left, right, middle
- *                                              )
- *                           )
- *                        // more as needed
- *                        );
- *      //Now we instantiate the class and pass our pointer array to the constructor 
- *      $longsocialPointers = new WP_Help_Pointer($pointers);
- *    }
- *
- * 
+ * @Based on WP_Help_Pointer
  * @package WP_Help_Pointer
  * @version 0.1
  * @author Tim Debo <tim@rawcreativestudios.com>
@@ -36,7 +14,7 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-class WP_Help_Pointer {
+class TTTSocial_Help {
 
     public $screen_id;
     public $valid;
@@ -85,12 +63,12 @@ class WP_Help_Pointer {
     public function add_pointers() {
                
         $pointers = $this->pointers;
-
+		
         if ( ! $pointers || ! is_array( $pointers ) )
             return;
        
         // Get dismissed pointers
-        $dismissed = explode( ',', (string) get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
+        //$dismissed = explode( ',', (string) get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
         $valid_pointers = array();
 
         // Check pointers and remove dismissed ones.
@@ -106,6 +84,7 @@ class WP_Help_Pointer {
             $valid_pointers['pointers'][] =  $pointer;
         }
 
+
         // No valid pointers? Stop here.
         if ( empty( $valid_pointers ) )
             return;
@@ -118,10 +97,10 @@ class WP_Help_Pointer {
    
     public function add_scripts() {
         $pointers = $this->valid;
-      
+
         if( empty( $pointers ) ) 
             return;
-
+		
         $pointers = json_encode( $pointers );
    
         echo <<<HTML
@@ -130,10 +109,10 @@ class WP_Help_Pointer {
             var WPHelpPointer = {$pointers};
            
             $.each(WPHelpPointer.pointers, function(i) {
-                wp_help_pointer_open(i);
+                ttt_social_help_pointer_open(i);
             });
 
-            function wp_help_pointer_open(i) {
+            function ttt_social_help_pointer_open(i) {
                 pointer = WPHelpPointer.pointers[i];
                 options = $.extend( pointer.options, {
                     close: function() {

@@ -79,9 +79,6 @@ require_once TTTINC_SOCIAL . '/inc/facebook-php-sdk/autoload.php';
 //add_action( 'plugins_loaded', array( 'Page_Template_Plugin', 'get_instance' ) );
 //require_once TTTINC_SOCIAL . '/social_sidebar.php';
 
-require_once TTTINC_SOCIAL . '/class/TTTSocial_Help.php';
-require_once TTTINC_SOCIAL . '/inc/pointers.php';
-
 
 /* Add new social mendia profile links
  * http://wp-snippets.com/addremove-contact-info-fields/
