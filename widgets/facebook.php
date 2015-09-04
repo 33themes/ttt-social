@@ -14,13 +14,19 @@ class TTTSocial_facebook_widget extends WP_Widget {
         $limit = esc_attr($instance['limit']);
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id('name'); ?>"><?php _e('Page name:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('name'); ?>" name="<?php echo $this->get_field_name('name'); ?>" type="text" value="<?php echo $name; ?>" /></label>
+            <label for="<?php echo $this->get_field_id('name'); ?>"><?php _e('Page name:', 'ttt-social' ); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('name'); ?>" name="<?php echo $this->get_field_name('name'); ?>" type="text" value="<?php echo $name; ?>" />
+            <small><?php printf( __('Go to <a href="%s" target="_blank">Facebook Help</a>', 'ttt-social' ), 'https://www.facebook.com/help/121237621291199'); ?></small>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('id'); ?>"><?php _e('Page ID:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('id'); ?>" name="<?php echo $this->get_field_name('id'); ?>" type="text" value="<?php echo $id; ?>" /></label>
+            <label for="<?php echo $this->get_field_id('id'); ?>"><?php _e('Page ID:', 'ttt-social'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id('id'); ?>" name="<?php echo $this->get_field_name('id'); ?>" type="text" value="<?php echo $id; ?>" />
+            <small><?php printf( __('Go to <a href="%s" target="_blank">FindmyFBid</a>', 'ttt-social'), 'http://findmyfbid.com/'); ?></small>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Limit:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" /></label>
+            <label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Feed Limit:', 'ttt-social'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" />
+			<small><?php _e('Amount of entries', 'ttt-social'); ?></small>
         </p>
         <?php
     }

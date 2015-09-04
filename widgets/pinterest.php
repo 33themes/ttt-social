@@ -13,13 +13,19 @@ class TTTSocial_pinterest_widget extends WP_Widget {
         $limit = esc_attr($instance['limit']);
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id('userpint'); ?>"><?php _e('User:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('userpint'); ?>" name="<?php echo $this->get_field_name('userpint'); ?>" type="text" value="<?php echo $userpint; ?>" /></label>
+            <label for="<?php echo $this->get_field_id('userpint'); ?>"><?php _e('Username:', 'ttt-social'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('userpint'); ?>" name="<?php echo $this->get_field_name('userpint'); ?>" type="text" value="<?php echo $userpint; ?>" />
+            <small><?php _e('i.e: http://pinterest.com/33themes, use 33themes', 'ttt-social'); ?></small>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('board'); ?>"><?php _e('Page board:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('board'); ?>" name="<?php echo $this->get_field_name('board'); ?>" type="text" value="<?php echo $board; ?>" /></label>
+            <label for="<?php echo $this->get_field_id('board'); ?>"><?php _e('Filter pins from a board', 'ttt-social'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('board'); ?>" name="<?php echo $this->get_field_name('board'); ?>" type="text" value="<?php echo $board; ?>" />
+            <small><?php _e('i.e: http://pinterest.com/33themes/comics/, use comics', 'ttt-social'); ?></small>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Limit:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" /></label>
+            <label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Limit:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" />
+            <small><?php _e('Amount of pins', 'ttt-social'); ?></small>
         </p>
         <?php
     }

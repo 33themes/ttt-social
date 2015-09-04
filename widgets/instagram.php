@@ -15,36 +15,21 @@ class TTTSocial_instagram_widget extends WP_Widget {
         ?>
 
         <p>
-            <label for="<?php echo $this->get_field_id('user_name'); ?>">
-                <?php _e('User name:'); ?>
-                <input class="widefat"
-                    id="<?php echo $this->get_field_id('user_name'); ?>"
-                    name="<?php echo $this->get_field_name('user_name'); ?>"
-                    type="text" value="<?php echo $user_name; ?>" />
-            </label>
+            <label for="<?php echo $this->get_field_id('user_name'); ?>"><?php _e('Username:', 'ttt-social'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('user_name'); ?>" name="<?php echo $this->get_field_name('user_name'); ?>" type="text" value="<?php echo $user_name; ?>" />
+            <small><?php _e('i.e: http://instagram.com/33themes use 33themes', 'ttt-social'); ?></small>
         </p>
-
         <p>
-            <label for="<?php echo $this->get_field_id('user_id'); ?>">
-                <?php _e('User ID:'); ?>
-                <input class="widefat"
-                    id="<?php echo $this->get_field_id('user_id'); ?>"
-                    name="<?php echo $this->get_field_name('user_id'); ?>"
-                    type="text" value="<?php echo $user_id; ?>" />
-            </label>
-            <em>* <?php _e("Empty if you don't know"); ?></em>
+            <label for="<?php echo $this->get_field_id('user_id'); ?>"><?php _e('Account ID:', 'ttt-social'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('user_id'); ?>" name="<?php echo $this->get_field_name('user_id'); ?>" type="text" value="<?php echo $user_id; ?>" />
+            <small><?php printf( __('Empty if you don´t know  or go to <a href="%s" target="_blank">Lookup User ID</a>', 'ttt-social'), 'http://jelled.com/instagram/lookup-user-id' ); ?></small>
         </p>
-
         <p>
-            <label for="<?php echo $this->get_field_id('limit'); ?>">
-                <?php _e('Limit:'); ?>
-                <input class="widefat"
-                    id="<?php echo $this->get_field_id('limit'); ?>"
-                    name="<?php echo $this->get_field_name('limit'); ?>"
-                    type="text" value="<?php echo $limit; ?>" />
-            </label>
+            <label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Limit:', 'ttt-social'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" />
+            <small><?php _e('Amount of photos', 'ttt-social'); ?></small>
         </p>
-
+        <p><?php printf( __('Check if your Instagram account is <a href="%s" target="_blank">Connected</a>','ttt-social'), admin_url('options-general.php?page=ttt-social-menu') ); ?></p>
         <?php
     }
 

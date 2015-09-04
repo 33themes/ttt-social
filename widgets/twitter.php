@@ -12,14 +12,21 @@ class TTTSocial_twitter_widget extends WP_Widget {
         $q = esc_attr($instance['q']);
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id('count'); ?>"><?php _e('Count:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('count'); ?>" name="<?php echo $this->get_field_name('count'); ?>" type="text" value="<?php echo $count; ?>" /></label>
+            <label for="<?php echo $this->get_field_id('screen_name'); ?>"><?php _e('Username:', 'ttt-social'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('screen_name'); ?>" name="<?php echo $this->get_field_name('screen_name'); ?>" type="text" value="<?php echo $screen_name; ?>" />
+            <small><?php _e('i.e: http://twitter.com/33themes, use 33themes', 'ttt-social'); ?></small>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('screen_name'); ?>"><?php _e('User:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('screen_name'); ?>" name="<?php echo $this->get_field_name('screen_name'); ?>" type="text" value="<?php echo $screen_name; ?>" /></label>
+            <label for="<?php echo $this->get_field_id('q'); ?>"><?php _e('Filter tweets by or from', 'ttt-social'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('q'); ?>" name="<?php echo $this->get_field_name('q'); ?>" type="text" value="<?php echo $q; ?>" />
+            <small><?php _e('i.e: a #hashtag or @username', 'ttt-social'); ?></small>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('q'); ?>"><?php _e('Query:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('q'); ?>" name="<?php echo $this->get_field_name('q'); ?>" type="text" value="<?php echo $q; ?>" /></label>
+            <label for="<?php echo $this->get_field_id('count'); ?>"><?php _e('Limit:', 'ttt-social'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('count'); ?>" name="<?php echo $this->get_field_name('count'); ?>" type="text" value="<?php echo $count; ?>" />
+            <small><?php _e('Amount of entries', 'ttt-social'); ?></small>           
         </p>
+        <p><?php printf( __('Check if your twitter account is <a href="%s" target="_blank">Connected</a>','ttt-social'), admin_url('options-general.php?page=ttt-social-menu') ); ?></p>
         <?php
     }
 

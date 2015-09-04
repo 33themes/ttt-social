@@ -198,27 +198,35 @@ if ( isset($_POST['facebook_application_keys']) && check_admin_referer('facebook
 	    </tbody>
 	</table>    
 
-    <fieldset>
-        <legend><?php _e('Instagram application keys', parent::sname ); ?></legend>
-        <form action="" method="post">
-            <input type="hidden" name="instagram_application_keys" value="1">
-            <?php wp_nonce_field('instagram_application_keys'); ?>
-            <label>Key</label> <input class="input" type="input" name="instagram_customer_key" value="<?php echo $this->get('instagram_customer_key'); ?>" placeholder="<?php _e('Application uniq key',parent::sname);?>">
-            <br>
-            <label>Secret</label> <input class="input" type="input" name="instagram_customer_secret" value="<?php echo $this->get('instagram_customer_secret'); ?>" placeholder="<?php _e('Application secret key',parent::sname);?>">
-            <br>
-            <input type="submit" class="button" value="<?php _e('Save', parent::sname ); ?>">
-        </form>
-
-    </fieldset>
-    <br>
-
-
+    <form action="" method="post">
+        <input type="hidden" name="instagram_application_keys" value="1">
+        <?php wp_nonce_field('instagram_application_keys'); ?>
+        <table class="form-table">
+            <tbody>
+	            <th scope="row">
+					<?php _e('Application keys', parent::sname ); ?>
+	            </th>
+	            <td></td>
+				<tr>
+					<th scope="row">
+						<label for="instagram_customer_key"><?php _e('Key',parent::sname);?></label>
+					</th>
+					<td>
+						<input class="regular-text" type="text" name="instagram_customer_key" value="<?php echo $this->get('instagram_customer_key'); ?>" placeholder="<?php _e('Application uniq key',parent::sname);?>">
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="instagram_customer_secret"><?php _e('Secret',parent::sname);?></label>
+					</th>
+					<td>
+						<input class="regular-text" type="text" name="instagram_customer_secret" value="<?php echo $this->get('instagram_customer_secret'); ?>" placeholder="<?php _e('Application secret key',parent::sname);?>">
+					</td>
+				</tr>
+            </tbody>
+        </table>
+        <input type="submit" class="button button-primary" value="<?php _e('Save', parent::sname ); ?>">
+    </form>
+    <p><strong><?php _e('Note:',parent::sname);?></strong> <?php _e('By default TTT Social use a 33themes.com Instagram App connect.',parent::sname);?></p>
+    <p><strong><?php _e('For Developers:',parent::sname);?></strong> <a href="https://instagram.com/developer/register/"><?php _e('Create your own Instagram App and replace this Key and Secret tokens.',parent::sname);?></a>
 </div>
-
-<style type="text/css">
-#tttsocial-page fieldset {
-    border: 1px solid #000;
-    padding: 10px;
-}
-</style>

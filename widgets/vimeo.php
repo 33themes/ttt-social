@@ -12,14 +12,14 @@ class TTTSocial_vimeo_widget extends WP_Widget {
 
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id('user'); ?>">
-                <?php _e('User:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('user'); ?>" name="<?php echo $this->get_field_name('user'); ?>" type="text" value="<?php echo $user; ?>" />
-            </label>
+            <label for="<?php echo $this->get_field_id('user'); ?>"><?php _e('Username:', 'ttt-social'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('user'); ?>" name="<?php echo $this->get_field_name('user'); ?>" type="text" value="<?php echo $user; ?>" />
+            <small><?php _e('i.e: http://vimeo.com/33themes use 33themes', 'ttt-social'); ?></small>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('limit'); ?>">
-                <?php _e('Limit:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" />
-            </label>
+            <label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Limit:', 'ttt-social'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" />
+            <small><?php _e('Amount of videos', 'ttt-social'); ?></small>
         </p>
         <?php
     }
