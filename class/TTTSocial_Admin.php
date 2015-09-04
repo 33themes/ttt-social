@@ -16,7 +16,7 @@ class TTTSocial_Admin extends TTTSocial_Common {
 	
 	
 	public function menu() {
-	        $s = add_submenu_page( 'options-general.php', __('TTT Social title',parent::sname), __('TTT Social',parent::sname), 'edit_posts', 'ttt-social-menu', array( &$this, 'menu_page') );
+	        $s = add_submenu_page( 'options-general.php', __('TTT Social title',parent::sname), __('Social Connectors',parent::sname), 'edit_posts', 'ttt-social-menu', array( &$this, 'menu_page') );
 	}
 	
 	public function enqueue_common() {

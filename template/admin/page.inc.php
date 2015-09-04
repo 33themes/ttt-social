@@ -59,65 +59,144 @@ if ( isset($_POST['facebook_application_keys']) && check_admin_referer('facebook
         <br>
     </div>
 
-    <h2><?php _e('TTT Social', parent::sname ) ; ?></h2>
+    <h1><?php _e('TTT Social Connectors', parent::sname ) ; ?></h1>
 
-    <br/>
 
-    <h3>Twitter</h3>
+    <h3 class="title dashicons-before dashicons-twitter"> Twitter</h3>
 
-    <fieldset>
-        <legend><?php _e('Twitter application keys', parent::sname ); ?></legend>
-        <form action="" method="post">
-            <input type="hidden" name="twitter_application_keys" value="1">
-            <?php wp_nonce_field('twitter_application_keys'); ?>
-            <label>Key</label> <input class="input" type="input" name="twitter_customer_key" value="<?php echo $this->get('twitter_customer_key'); ?>" placeholder="<?php _e('Application uniq key',parent::sname);?>">
-            <br>
-            <label>Secret</label> <input class="input" type="input" name="twitter_customer_secret" value="<?php echo $this->get('twitter_customer_secret'); ?>" placeholder="<?php _e('Application secret key',parent::sname);?>">
-            <br>
-            <input type="submit" class="button" value="<?php _e('Save', parent::sname ); ?>">
-        </form>
+	<table class="form-table">
+		<tbody>
+			<tr>
+			    <?php if ($this->get('twitter_credentials')): $connection = $this->twitter_connection('account/settings'); ?>
+					<th scope="row">
+						<?php _e('Is liked to twitter account', parent::sname ); ?>
+					</th>
+					<td>
+						<strong><?php echo '@'.$connection->screen_name; ?></strong>
+				        <a class="button button-small" href="<?php echo get_admin_url(); ?>options-general.php?page=ttt-social-menu&unlink=true&_nonce=<?php echo wp_create_nonce('twitter_credentials'); ?>"><?php _e('Unlink this account'); ?></a>
+					</td>
+			    <?php else: ?>
+			    	<th scope="row">
+						<?php _e('Need to link a twitter account', parent::sname ); ?>				    	
+			    	</th>
+			        <td>
+			        	<a class="button button-primary twitter_link" href="<?php echo $redirect_url_twitter; ?>"><?php _e('Connect Twitter Account', parent::sname ); ?></a>
+			        </td>
+			    <?php endif; ?>
+			</tr>
+	    </tbody>
+	</table>
+	<form action="" method="post">
+        <input type="hidden" name="twitter_application_keys" value="1">
+        <?php wp_nonce_field('twitter_application_keys'); ?>
+		<table class="form-table">
+			<tbody>
+				<tr>
+					<th scope="row">
+						<?php _e('Application keys', parent::sname ); ?>
+					</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="twitter_customer_key"><?php _e('Key',parent::sname);?></label>
+					</th>
+					<td>
+						<input class="regular-text" type="text" name="twitter_customer_key" value="<?php echo $this->get('twitter_customer_key'); ?>" placeholder="<?php _e('Application uniq key',parent::sname);?>">
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="twitter_customer_secret"><?php _e('Secret',parent::sname);?></label>
+					</th>
+					<td>
+						<input class="regular-text" type="text" name="twitter_customer_secret" value="<?php echo $this->get('twitter_customer_secret'); ?>" placeholder="<?php _e('Application secret key',parent::sname);?>">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+        <input type="submit" class="button button-primary" value="<?php _e('Save', parent::sname ); ?>">
+    </form>
+    <p><strong><?php _e('Note:',parent::sname);?></strong> <?php _e('By default TTT Social use a 33themes.com Twitter App connect. Our App has limited twitter queries.',parent::sname);?></p>
+    <p><strong><?php _e('For Developers:',parent::sname);?></strong> <a href="https://apps.twitter.com/"><?php _e('Create your own twitter App and replace this Key and Secret tokens.',parent::sname);?></a></p>
 
-    </fieldset>
-    <br>
+    <br><hr><br>
 
-    <?php if ($this->get('twitter_credentials')): $connection = $this->twitter_connection('account/settings'); ?>
-        <fieldset>
-            <legend><?php _e('Is liked to twitter account', parent::sname ); ?>: <?php echo '@'.$connection->screen_name; ?></legend>
-            <a class="button" href="<?php echo get_admin_url(); ?>options-general.php?page=ttt-social-menu&unlink=true&_nonce=<?php echo wp_create_nonce('twitter_credentials'); ?>"><?php _e('Unlink this account'); ?></a>
-        </fieldset>
-        <?php else: ?>
-        <a class="button twitter_link" href="<?php echo $redirect_url_twitter; ?>"><?php _e('Add account', parent::sname ); ?></a>
-        <br>
-    <?php endif; ?>
+    <h3 class="title dashicons-before dashicons-facebook-alt"> Facebook</h3>
 
-    <br>
-    <hr>
-
-    <h3>Facebook</h3>
-
-    <fieldset>
-        <legend><?php _e('Facebook application keys', parent::sname ); ?></legend>
-        <form action="" method="post">
-            <input type="hidden" name="facebook_application_keys" value="1">
-            <?php wp_nonce_field('facebook_application_keys'); ?>
-
-            <label>APP ID</label> <input class="input" type="input" name="facebook_app_id" value="<?php echo $this->get('facebook_app_id'); ?>" placeholder="<?php _e('Application uniq ID',parent::sname);?>">
-            <br>
-
-            <label>APP Secret</label> <input class="input" type="input" name="facebook_app_key" value="<?php echo $this->get('facebook_app_key'); ?>" placeholder="<?php _e('Application key',parent::sname);?>">
-            <br>
-
-            <input type="submit" class="button" value="<?php _e('Save', parent::sname ); ?>">
-        </form>
-
-        <p>* <a href="https://developers.facebook.com/apps/async/create/platform-setup/dialog/" target="_blank">Create new APP for facebook</a></p>
-
-    </fieldset>
+    <form action="" method="post">
+        <input type="hidden" name="facebook_application_keys" value="1">
+        <?php wp_nonce_field('facebook_application_keys'); ?>
+		<table class="form-table">
+			<tbody>
+				<tr>
+					<th scope="row">
+						<?php _e('Application keys', parent::sname ); ?>
+					</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="facebook_app_id"><?php _e('Key',parent::sname);?></label>
+					</th>
+					<td>
+						<input class="regular-text" type="text" name="facebook_app_id" value="<?php echo $this->get('facebook_app_id'); ?>" placeholder="<?php _e('Application uniq ID',parent::sname);?>">
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="facebook_app_key"><?php _e('Secret',parent::sname);?></label>
+					</th>
+					<td>
+						<input class="regular-text" type="text" name="facebook_app_key" value="<?php echo $this->get('facebook_app_key'); ?>" placeholder="<?php _e('Application key',parent::sname);?>">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+        <input type="submit" class="button button-primary" value="<?php _e('Save', parent::sname ); ?>">
+    </form>
+    <p><strong><?php _e('Note:',parent::sname);?></strong> <?php _e('By default TTT Social use a 33themes.com Facebook App connect.',parent::sname);?></p>
+    <p><strong><?php _e('For Developers:',parent::sname);?></strong> <a href="https://developers.facebook.com/apps/async/create/platform-setup/dialog/"><?php _e('Create your own Facebook App and replace this Key and Secret tokens.',parent::sname);?></a></p>
     
-    <br>
-    <hr>
+    <br><hr><br>
 
-    <h3>Instagram</h3>
+    <h3 class="title dashicons-before dashicons-rss">Instagram</h3>
+
+	<table class="form-table">
+		<tbody>
+			<tr>
+			    <?php if ($this->get('instagram_credentials')): ?>
+			
+			        <?php 
+			        $instagram = new Instagram(array(
+			                            'apiKey'      => $this->get('instagram_customer_key'),
+			                            'apiSecret'   => $this->get('instagram_customer_secret'),
+			                            'apiCallback' => get_admin_url().'options-general.php?page=ttt-social-menu',
+			                ));
+			        $instagram->setAccessToken($this->get('instagram_credentials'));
+			        // var_dump($test->searchUser('neta_alchimister'));
+			        // var_dump($test->getUserMedia('29605612', 2));
+			        ?>
+					<th scope="row">
+						<?php _e('Is liked to this Instagram account', parent::sname ); ?>
+					</th>
+					<td>
+						<strong><?php $instagram->getUser()->data->username; ?></strong>
+				        <a class="button button-small" href="<?php echo get_admin_url(); ?>options-general.php?page=ttt-social-menu&unlink=true&_nonce=<?php echo wp_create_nonce('instagram_credentials'); ?>">
+				            <?php _e('Unlink this account', parent::sname ); ?> 
+				        </a>
+					</td>
+			    <?php else: ?>
+			    	<th scope="row">
+						<?php _e('Need to link a Instagram account', parent::sname ); ?>				    	
+			    	</th>
+			        <td>
+						<a class="button button-primary instagram_link" href="<?php echo $redirect_url_instagram; ?>"><?php _e('Add account', parent::sname ); ?></a>
+			        </td>
+			    <?php endif; ?>
+			</tr>
+	    </tbody>
+	</table>    
 
     <fieldset>
         <legend><?php _e('Instagram application keys', parent::sname ); ?></legend>
@@ -133,34 +212,6 @@ if ( isset($_POST['facebook_application_keys']) && check_admin_referer('facebook
 
     </fieldset>
     <br>
-
-
-    <?php if ($this->get('instagram_credentials')): ?>
-
-        <?php 
-        $instagram = new Instagram(array(
-                            'apiKey'      => $this->get('instagram_customer_key'),
-                            'apiSecret'   => $this->get('instagram_customer_secret'),
-                            'apiCallback' => get_admin_url().'options-general.php?page=ttt-social-menu',
-                ));
-        $instagram->setAccessToken($this->get('instagram_credentials'));
-        // var_dump($test->searchUser('neta_alchimister'));
-        // var_dump($test->getUserMedia('29605612', 2));
-        ?>
-
-        <fieldset>
-            <legend><?php _e('Is liked to instagram account', parent::sname ); ?>: </legend>
-            <a class="button" href="<?php echo get_admin_url(); ?>options-general.php?page=ttt-social-menu&unlink=true&_nonce=<?php echo wp_create_nonce('instagram_credentials'); ?>">
-                <?php _e('Unlink this account'); ?> <?php $instagram->getUser()->data->username; ?>
-            </a>
-        </fieldset>
-        <?php else: ?>
-        <a class="button instagram_link" href="<?php echo $redirect_url_instagram; ?>"><?php _e('Add account', parent::sname ); ?></a>
-        <br>
-    <?php endif; ?>
-
-    <br>
-    <hr>
 
 
 </div>
