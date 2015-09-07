@@ -1,36 +1,17 @@
 === TTT Social ===
-Contributors: 33themes, gabrielperezs, lonchbox, tomasog
-Tags: facebook timeline, twitter timeline, twitter oauth, multiple twitter account, social timeline, facebook widget, twitter widget
+Contributors: 33themes, gabrielperezs, lonchbox, tomasog, 11bits
+Tags: facebook, twitter, twitter oauth, social timeline, facebook page, vimeo feed, pinterest feed, instagram, instagram oauth
 Requires at least: 3.4
 Tested up to: 3.6
-Stable tag: 0.1
+Stable tag: 0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Custom design Facebook Page & Twitter timelines widgets.
+Create your custom html layout for Facebook page, Twitter, Instagram, Pinterest and Vimeo feeds.
 
 == Description ==
 
-
-= Widgets =
-
-The plugin load two custom widgets:
-
-* TTT Social Facebook Widget
-Fields:
-- Page Name. Your page name is: http://facebook.com/MYPAGENAME you URL username is MYPAGENAME.
-- Page ID. If you don´t know your ID go to: http://findmyfacebookid.com/
-- Limit. Is the amount of entries you want to show in your widget.
-
-* TTT Social Twitter Widget
-Fields:
-- Count. How many tweets you want to show.
-- User. Even you had connected with your twitter account you can also show other user timeline just writeing his username.
-- Query. Also you can filter the tweets by: hashtag, username or text.
-
-
-You can Add as many widgets you want :)
-
+A plugin built more for Theme Developers, make it easy the importation and customization of social media timelines.
 
 
 = 33themes Template System =
@@ -39,47 +20,9 @@ This plugins use our widgets template system, make easy to you to customize the 
 
 **Create a custom template:**
 
-1. Create a `ttt-social` folder sindei your theme, next create two new folders `ttt-social/facebook` & `ttt-social/twitter`, onea folder for each social network.
-1. Copy the **template.php** file from `wp-content/plugins/ttt-social/template/front/facebook/template.php` to a new folder in your theme `wp-content/themes/YOUR-THEME/ttt-social/facebook/template.php`
-1. Copy the **template.php** file from `wp-content/plugins/ttt-social/template/front/twitter/template.php` to a new folder in your theme `wp-content/themes/YOUR-THEME/ttt-social/twitter/template.php`
-1. Edit the files you copied from the plugin into your folder, remove all `<html>` code you want to make it look as you need.
-
-**Templates Data**
-
-*Facebook*
-`
-<?php if ( $netsocial->feed ): ?>
-	<?php foreach ($netsocial->feed as $fb_feed_item) : ?>
-		HERE HTML & FB FIELDS
-	<?php endforeach; ?>
-<?php endif; ?>
-`
-FB FIELDS:
-* `<?php echo $fb_page; ?>` -> FB Page link
-* `<?php echo $netsocial->name ?>` -> FB Page name
-* `<?php echo $fb_feed_item->get_permalink(); ?>` -> FB Page Item link
-* `<?php echo $fb_feed_item->get_date('j F Y @ g:i a'); ?>` -> FB Page Item date
-* `<?php echo substr($fb_feed_item->get_description(), 0, 165); ?>` -> FB Page Item content. Text limit from 0 to 165 characters.
-
-*Twitter*
-`
-<?php foreach( $netsocial->feed as $twitt ): ?>
-	HERE HTML & TWITTER FIELDS
-<?php endforeach; ?>
-`
-TW FIELDS:
-* `<?php echo $twitter ?>` -> TW user link
-* `<?php echo $twitt->user->name; ?>` -> TW username
-* `<?php echo $twitt->user->profile_image_url; ?>` -> TW user avatar
-* `<?php echo $twitt->user->screen_name; ?>` -> TW user screen name. Is not the same as username
-* `<?php echo $twitt->id_str; ?>` -> Tweet code
-* `<?php echo $twitt->text; ?>`-> Tweet text
-* `<?php echo $twitt->created_at; ?>` -> Tweet date
-* `<?php echo $twitt->retweet; ?>` -> Retweet link
-
-How to write a tweet url?
-`https://twitter.com/<?php echo $twitt->user->screen_name; ?>/status/<?php echo $twitt->id_str; ?>`
-
+1. Create a new folder with the name `ttt-social` inside your theme
+1. Copy the **template.php** file from `wp-content/plugins/ttt-social/template/front/SOCIAL NETWORK/template.php` to a new folder in your theme `wp-content/themes/YOUR-THEME/ttt-social/SOCIAL NETWORK/template.php`. i.e: YOUR_THEME/ttt-social/twitter/template.php
+1. The `template.php` file will replace the plugin template and is the same template used for the social network widget.
 
 
 == Installation ==
@@ -88,32 +31,43 @@ This section describes how to install the plugin and get it working.
 
 e.g.
 
-1. Upload `ttt-social-timelines` folder to the `/wp-content/plugins/` directory
+1. Upload `ttt-social` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-
-
-= Twitter Oauth Connection =
-
-*IMPORTANT*
-By Default TTT Social have twitter connection with our Twitter Application, you can keep using our connection but we recommend to make your own Twitter Application so you have more control.
-If you want to change the Twitter App:
-
-1. Create a Twitter Application: https://dev.twitter.com/apps/new
-1. After you create your twitter app just replace the **Key** & **secret** codes from Settings -> TTT Social with your own codes.
-
-*Add a Twitter Account*
-Go to Settings -> TTT Social and click in **Add Account** button, the plugin will launch a twitter login, give your account permision to connect and it´s DONE.
+1. Go to Settings -> TTT Social Keys for configuration. To make your life easier we set our App Keys, don´t need to change it at least you know how the Facebook, Twitter and Instagram API Apps works.
+1. *Important* you have to make an OAuth connection with a Twitter and Instagram account or the widgets will not work.
 
 
 == Frequently Asked Questions ==
 
 = How the plugin bring the content from each social network? =
 
-*All Facebook data came form the feed*
-Use your ID number & URL username to make the connection. *NOT FACEBOOK CONNECT*.
-Let´s use the WordPress Facebook Page. His url is http://www.facebook.com/WordPress and ID is 6427302910.
-All data you can use in your widget template came from Facebook Feed tags. This is the feed url http://www.facebook.com/feeds/page.php?format=atom10&id=6427302910
-The page username it used to bring page profile image and some other things.
+*How it connect with Facebook?*
+It use a Facebook App, and by default we include a FB App we create, if you don´t know much about OpenGraph or Facebook App Keys just let it like it is.
 
-*All Twitter data you can use in your widget template came from twitter API 1.1*
-https://dev.twitter.com/docs/api/1.1/get/lists/list
+*Facebook widget works with Facebook Profiles?*
+No, only Facebook pages.
+
+*Do I need to be the Facebook page administrator to connect?*
+No, you can use any open to public page.
+
+*How it connects with Twitter?*
+The plugin use Twitter OAuth API connection, it´s the only way and the most simple. Also we include by default our Twitter APP Keys, you can change them by yours ONLY if you know how this works, if not, let it like it is.
+
+*Do I need a Twitter Account to use the widget?*
+Yes, is necessary to link a Twitter Account so the feed works, after link the account you can show any open twitter user in your widget or filter tweets by a #hashtag or @user, like a search.
+
+*Can I use more than one Facebook or Twitter widget?*
+Yes, you can use as many as you want, the only limitation are the queries our APP have to the Twitter or Facebook API, this will make sometimes your feed appear empty.
+
+*Do I need an Instagram account to use the widget?*
+Yes, as Twitter, Instagram need to link an account with our Instagram APP, after make the oAuth connection can show any open Instagram account you want.
+
+*Instagram widget is limited to the connected account?*
+No, after connect an Instagram account you can connect with any other you want, and use the widget any times you want where each one can have a different account.
+
+*Pinterest and Vimeo don´t need any API connection?*
+No, :) 
+
+*Why not Youtube?*
+It´s in our roadmap for future updates.
+
