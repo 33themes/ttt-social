@@ -33,8 +33,8 @@ e.g.
 
 1. Upload `ttt-social` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Go to Settings -> TTT Social Keys for configuration. To make your life easier we set our App Keys, don´t need to change it at least you know how the Facebook, Twitter and Instagram API Apps works.
-1. *Important* you have to make an OAuth connection with a Twitter and Instagram account or the widgets will not work.
+1. Go to Settings -> TTT Social Keys for configuration. To make your life easier we set our App Keys, don´t need to change it at least you know how the Facebook, Twitter Apps works.
+1. *Important* you have to make an OAuth connection with a Twitter. For Instagram need to create your own Instagram APP here https://instagram.com/developer/register/ and replace the Tokens Key and Secret.
 
 
 == Frequently Asked Questions ==
@@ -65,9 +65,13 @@ Yes, as Twitter, Instagram need to link an account with our Instagram APP, after
 *Instagram widget is limited to the connected account?*
 No, after connect an Instagram account you can connect with any other you want, and use the widget any times you want where each one can have a different account.
 
+*Connecting Instagram get this error {"code": 400, "error_type": "OAuthException", "error_message": "Redirect URI does not match registered redirect URI"} ?*
+It´s because Instagram APP need the specification of the site domain, if not match with the domain in where you are installing the plugin will show this message. Go to https://instagram.com/developer/register/ and create your own Instagram APP, replace the tokens key and secret with the one ones and will work.
+
 *Pinterest and Vimeo don´t need any API connection?*
 No, :) 
 
 *Why not Youtube?*
 It´s in our roadmap for future updates.
+
 

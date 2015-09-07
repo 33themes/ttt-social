@@ -212,7 +212,7 @@ if ( isset($_POST['facebook_application_keys']) && check_admin_referer('facebook
 						<label for="instagram_customer_key"><?php _e('Key',parent::sname);?></label>
 					</th>
 					<td>
-						<input class="regular-text" type="text" name="instagram_customer_key" value="<?php echo $this->get('instagram_customer_key'); ?>" placeholder="<?php _e('Application uniq key',parent::sname);?>">
+						<input class="regular-text" type="text" name="instagram_customer_key" value="<?php echo $this->get('instagram_customer_key'); ?>" placeholder="<?php //c_e('Application uniq key',parent::sname);?>">
 					</td>
 				</tr>
 				<tr>
@@ -220,13 +220,12 @@ if ( isset($_POST['facebook_application_keys']) && check_admin_referer('facebook
 						<label for="instagram_customer_secret"><?php _e('Secret',parent::sname);?></label>
 					</th>
 					<td>
-						<input class="regular-text" type="text" name="instagram_customer_secret" value="<?php echo $this->get('instagram_customer_secret'); ?>" placeholder="<?php _e('Application secret key',parent::sname);?>">
+						<input class="regular-text" type="text" name="instagram_customer_secret" value="<?php echo $this->get('instagram_customer_secret'); ?>" placeholder="<?php //_e('Application secret key',parent::sname);?>">
 					</td>
 				</tr>
             </tbody>
         </table>
         <input type="submit" class="button button-primary" value="<?php _e('Save', parent::sname ); ?>">
     </form>
-    <p><strong><?php _e('Note:',parent::sname);?></strong> <?php _e('By default TTT Social use a 33themes.com Instagram App connect.',parent::sname);?></p>
-    <p><strong><?php _e('For Developers:',parent::sname);?></strong> <a href="https://instagram.com/developer/register/"><?php _e('Create your own Instagram App and replace this Key and Secret tokens.',parent::sname);?></a>
+    <p><strong><?php _e('IMPORTANT:',parent::sname);?></strong> <a href="https://instagram.com/developer/register/"><?php _e('Create your own Instagram App and replace this Key and Secret tokens.',parent::sname);?></a>
 </div>
