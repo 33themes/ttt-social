@@ -3,7 +3,7 @@
 Plugin Name: TTT Social
 Plugin URI: http://www.33themes.com
 Description: Simple and quickly social feed
-Version: 0.8
+Version: 0.8.1
 Author: 33 Themes GmbH
 Author URI: http://www.33themes.com
 */
