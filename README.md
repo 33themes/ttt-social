@@ -108,36 +108,46 @@ Go to Settings -> TTT Social and click in **Add Account** button, the plugin wil
 
 ### How the plugin brings the content from each social network?
 
-*How does it connect with Facebook?*
+**How does it connect with Facebook?**
+
 It uses a Facebook App, and by default we include a FB App we create, if you don´t know much about OpenGraph or Facebook App Keys just leave it as it is.
 
-*Facebook widget works with Facebook Profiles?*
+**Facebook widget works with Facebook Profiles?**
+
 No, only with Facebook pages.
 
-*Do I need to be the Facebook page administrator to connect?*
+**Do I need to be the Facebook page administrator to connect?**
+
 No, you can use any open to public page.
 
-*How does it connect with Twitter?*
+**How does it connect with Twitter?**
+
 The plugin use Twitter OAuth API connection, it´s the only way and the most simple. Also we include by default our Twitter APP Keys, you can change them by yours ONLY if you know how this works, if not, leave it as it is.
 
-*Do I need a Twitter Account to use the widget?*
+**Do I need a Twitter Account to use the widget?**
+
 Yes, is necessary to link a Twitter Account for the feed work, after link the account you can show any open twitter user in your widget or filter tweets by #hashtag or @user, like a search.
 
-*Can I use more than one Facebook or Twitter widget?*
+**Can I use more than one Facebook or Twitter widget?**
+
 Yes, you can use as many as you want, the only limitation are the queries our APP have to the Twitter or Facebook API, this will make sometimes your feed appear empty.
 
-*Do I need an Instagram account to use the widget?*
+**Do I need an Instagram account to use the widget?**
+
 Yes, you have to link an account with our Instagram APP, after make the oAuth connection you can show any open Instagram account.
 
-*Is Instagram widget limited to the connected account?*
+**Is Instagram widget limited to the connected account?**
+
 No, after connect an Instagram account you can connect with any other, and use the widget many times you want and each one can have a different account.
 
-*Connecting Instagram shows this error `{"code": 400, "error_type": "OAuthException", "error_message": "Redirect URI does not match registered redirect URI"}` ?*
+**Connecting Instagram shows this error `{"code": 400, "error_type": "OAuthException", "error_message": "Redirect URI does not match registered redirect URI"}` ?**
+
 This is because Instagram APP needs the specification of the site domain, if it doesn't match with the domain in where you are installing the plugin it will show this message. Go to https://instagram.com/developer/register/ and create your own Instagram APP, replace the tokens key and secret with the new ones and it will work.
 
-*Pinterest and Vimeo don´t need any API connection?*
+**Pinterest and Vimeo don´t need any API connection?**
+
 No, :) 
 
-*Why not Youtube?*
-It´s in our roadmap for future updates.
+**Why not Youtube?**
 
+It´s in our roadmap for future updates.
