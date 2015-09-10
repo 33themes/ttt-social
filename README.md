@@ -15,7 +15,7 @@ Create your custom html layout for Facebook page, Twitter, Instagram, Pinterest 
 
 A plugin built mainly for theme developers, make it easy the importation and customization of social media timelines.
 
-# Widgets
+## Widgets
 
 The plugin load two custom widgets:
 
