@@ -1,12 +1,12 @@
 # TTT Social
 
-* **Contributors:** 33themes, gabrielperezs, lonchbox, tomasog, 11bits
-* **Tags:** facebook, twitter, twitter oauth, social timeline, facebook page, vimeo feed, pinterest feed, instagram, instagram oauth
-* **Requires at least:** 3.4
-* **Tested up to:** 4.3
-* **Stable tag:** 0.8.1
-* **License:** GPLv2
-* **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+* Contributors: 33themes, gabrielperezs, lonchbox, tomasog, 11bits
+* Tags: facebook, twitter, twitter oauth, social timeline, facebook page, vimeo feed, pinterest feed, instagram, instagram oauth
+* Requires at least: 3.4
+* Tested up to: 4.3
+* Stable tag: 0.8.1
+* License: GPLv2
+* License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Create your custom html layout for Facebook page, Twitter, Instagram, Pinterest and Vimeo feeds.
 
