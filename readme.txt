@@ -55,6 +55,7 @@ This plugin use our widgets template system, it makes easy to customize the look
 	<?php endforeach; ?>
 <?php endif; ?>
 `
+
 FB FIELDS:
 
 * `<?php echo $fb_page; ?>` -> FB Page link
@@ -70,6 +71,7 @@ FB FIELDS:
 	HERE HTML & TWITTER FIELDS
 <?php endforeach; ?>
 `
+
 TW FIELDS:
 
 * `<?php echo $twitter ?>` -> TW user link
