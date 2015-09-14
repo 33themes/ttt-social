@@ -55,6 +55,7 @@ This plugin use our widgets template system, it makes easy to customize the look
 <?php endif; ?>
 `
 FB FIELDS:
+
 * `<?php echo $fb_page; ?>` -> FB Page link
 * `<?php echo $netsocial->name ?>` -> FB Page name
 * `<?php echo $fb_feed_item->get_permalink(); ?>` -> FB Page Item link
@@ -68,6 +69,7 @@ FB FIELDS:
 <?php endforeach; ?>
 `
 TW FIELDS:
+
 * `<?php echo $twitter ?>` -> TW user link
 * `<?php echo $twitt->user->name; ?>` -> TW username
 * `<?php echo $twitt->user->profile_image_url; ?>` -> TW user avatar
