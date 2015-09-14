@@ -15,27 +15,26 @@ Create your custom html layout for Facebook page, Twitter, Instagram, Pinterest 
 
 A plugin built mainly for theme developers, make it easy the importation and customization of social media timelines.
 
-## Widgets
+### Widgets
 
-The plugin load two custom widgets:
+The plugin adds new custom widgets:
 
-* TTT Social Facebook Widget
-Fields:
+**TTT Social Facebook Widget**
+
 - Page Name. Your page name is: http://facebook.com/MYPAGENAME you URL username is MYPAGENAME.
 - Page ID. If you don´t know your ID go to: http://findmyfacebookid.com/
 - Limit. Is the amount of entries you want to show in your widget.
 
-* TTT Social Twitter Widget
-Fields:
+**TTT Social Twitter Widget**
+
 - Count. How many tweets you want to show.
 - User. Even you had connected with your twitter account you can also show other user timeline just writeing his username.
 - Query. Also you can filter the tweets by: hashtag, username or text.
 
-
 You can Add as many widgets you want :)
 
 
-## 33themes Template System
+### 33themes Template System
 
 This plugin use our widgets template system, it makes easy to customize the look & feel of the social feeds.
 
@@ -46,9 +45,9 @@ This plugin use our widgets template system, it makes easy to customize the look
 3. The `template.php` file will replace the plugin template and is the same template used for the social network widget.
 
 
-## Templates Data
+### Templates Data
 
-### Facebook
+#### Facebook
 `
 <?php if ( $netsocial->feed ): ?>
 	<?php foreach ($netsocial->feed as $fb_feed_item) : ?>
@@ -63,7 +62,7 @@ FB FIELDS:
 * `<?php echo $fb_feed_item->get_date('j F Y @ g:i a'); ?>` -> FB Page Item date
 * `<?php echo substr($fb_feed_item->get_description(), 0, 165); ?>` -> FB Page Item content. Text limit from 0 to 165 characters.
 
-### Twitter
+#### Twitter
 `
 <?php foreach( $netsocial->feed as $twitt ): ?>
 	HERE HTML & TWITTER FIELDS
