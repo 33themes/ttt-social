@@ -47,6 +47,7 @@ This plugin use our widgets template system, it makes easy to customize the look
 ### Templates Data
 
 #### Facebook
+
 `
 <?php if ( $netsocial->feed ): ?>
 	<?php foreach ($netsocial->feed as $fb_feed_item) : ?>
@@ -63,6 +64,7 @@ FB FIELDS:
 * `<?php echo substr($fb_feed_item->get_description(), 0, 165); ?>` -> FB Page Item content. Text limit from 0 to 165 characters.
 
 #### Twitter
+
 `
 <?php foreach( $netsocial->feed as $twitt ): ?>
 	HERE HTML & TWITTER FIELDS
