@@ -118,7 +118,7 @@ if ( isset($_POST['facebook_application_keys']) && check_admin_referer('facebook
         <input type="submit" class="button button-primary" value="<?php _e('Save', parent::sname ); ?>">
     </form>
     <p><strong><?php _e('Note:',parent::sname);?></strong> <?php _e('By default TTT Social use a 33themes.com Twitter App connect. Our App has limited twitter queries.',parent::sname);?></p>
-    <p><strong><?php _e('For Developers:',parent::sname);?></strong> <a href="https://apps.twitter.com/"><?php _e('Create your own twitter App and replace this Key and Secret tokens.',parent::sname);?></a></p>
+    <p><strong><?php _e('For Developers:',parent::sname);?></strong> <a target="_blank" href="https://apps.twitter.com/app/new"><?php _e('Create your own twitter App and replace this Key and Secret tokens.',parent::sname);?></a></p>
 
     <br><hr><br>
 
@@ -156,7 +156,7 @@ if ( isset($_POST['facebook_application_keys']) && check_admin_referer('facebook
         <input type="submit" class="button button-primary" value="<?php _e('Save', parent::sname ); ?>">
     </form>
     <p><strong><?php _e('Note:',parent::sname);?></strong> <?php _e('By default TTT Social use a 33themes.com Facebook App connect.',parent::sname);?></p>
-    <p><strong><?php _e('For Developers:',parent::sname);?></strong> <a href="https://developers.facebook.com/apps/async/create/platform-setup/dialog/"><?php _e('Create your own Facebook App and replace this Key and Secret tokens.',parent::sname);?></a></p>
+    <p><strong><?php _e('For Developers:',parent::sname);?></strong> <a target="_blank" href="https://developers.facebook.com/apps/async/create/platform-setup/dialog/"><?php _e('Create your own Facebook App and replace this Key and Secret tokens.',parent::sname);?></a></p>
     
     <br><hr><br>
 
@@ -227,5 +227,5 @@ if ( isset($_POST['facebook_application_keys']) && check_admin_referer('facebook
         </table>
         <input type="submit" class="button button-primary" value="<?php _e('Save', parent::sname ); ?>">
     </form>
-    <p><strong><?php _e('IMPORTANT:',parent::sname);?></strong> <a href="https://instagram.com/developer/register/"><?php _e('Create your own Instagram App and replace this Key and Secret tokens.',parent::sname);?></a>
+    <p><strong><?php _e('Require:',parent::sname);?></strong> <a target="_blank" href="https://instagram.com/developer/register/"><?php _e('Create your own Instagram App and replace this Key and Secret tokens.',parent::sname);?></a>
 </div>
