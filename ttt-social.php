@@ -86,6 +86,7 @@ require_once TTTINC_SOCIAL . '/inc/facebook-php-sdk/autoload.php';
 function ttt_social_contactmethods( $contactmethods ) {
     $contactmethods['twitter'] = 'Twitter'; // Add Twitter
     $contactmethods['facebook'] = 'Facebook'; // Add Facebook
+    $contactmethods['linkedin'] = 'Linkedin'; // Add Facebook
     $contactmethods['vimeo'] = 'Vimeo'; // Add Vimeo
     $contactmethods['instagram'] = 'Instagram'; // Add Instagram
     $contactmethods['pinterest'] = 'Pinterest'; // Add Pinterest
