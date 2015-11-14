@@ -99,10 +99,7 @@ class TTTSocial_Common {
         return (object) $this->get('facebook');
     }
 
-    public function facebook_load( $params = false ) {
-
-        $netsocial = $this->facebook();
-
+    public function facebook_session_ini() {
         // https://developers.facebook.com/docs/php/FacebookSession/4.0.0
 
         FacebookSession::setDefaultApplication(
@@ -127,13 +124,36 @@ class TTTSocial_Common {
             echo $ex->getMessage();
         }
 
-        if ( isset($params['id']) ) $netsocial->id = $params['id'];
-        if ( isset($params['limit']) ) $netsocial->limit = $params['limit'];
-        if ( isset($params['name']) ) $netsocial->name = $params['name'];
+        return $session;
 
-        $request = new Facebook\FacebookRequest($session, 'GET', sprintf('/%s/posts?limit=%d', $netsocial->id, $netsocial->limit));
-        $response = $request->execute();
-        $graphObject = $response->getGraphObject();
+    }
+
+    public function _facebook_request($_request) {
+        
+        $session = $this->facebook_session_ini();
+        $request = new Facebook\FacebookRequest($session, 'GET', $_request);
+
+        try {
+            $response = $request->execute();
+            return $response->getGraphObject();
+        } catch(Facebook\FacebookRequestException $e) {
+            echo sprintf("\n<!--\n %s - ERRROR - Facebook SDK\n----\n [code: %s] %s \n-->\n", __CLASS__, $e->getCode(), $e->getMessage());
+        }
+
+        return false;
+         
+    }
+
+    public static function facebook_request($_request) {
+        $s = new TTTSocial_Common();
+        return $s->_facebook_request($_request);
+    }
+
+    public function facebook_load( $params = false ) {
+
+        $netsocial = $this->facebook();
+
+        $graphObject = $this->_facebook_request( sprintf('/%s/posts?limit=%d', $netsocial->id, $netsocial->limit) );
 
         $netsocial->feed = $graphObject->asArray()['data'];
 

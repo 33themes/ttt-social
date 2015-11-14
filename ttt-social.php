@@ -15,7 +15,7 @@ define('TTTVERSION_SOCIAL', 0.1 );
 global $TTTSocial_Front, $TTTSocial;
 
 function ttt_autoload_social( $class ) {
-    if ( 0 !== strpos( $class, 'TTTSocial_' ) )
+    if ( 0 !== strpos( $class, 'TTTSocial' ) )
         return;
     
     $file = TTTINC_SOCIAL . '/class/' . $class . '.php';
